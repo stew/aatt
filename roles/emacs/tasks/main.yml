@@ -1,0 +1,8 @@
+---
+- name: checkout .emacs.d
+  git: repo=https://github.com/stew/emacs.d.git
+       accept_hostkey=True
+       dest=/home/{{item}}/.emacs.d
+  with_items:
+    - stew
+

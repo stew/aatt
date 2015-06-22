@@ -1,0 +1,24 @@
+---
+- name: Install X packages
+  apt: pkg={{item}} state=installed
+  sudo: yes
+  with_items:
+    - gdm3
+    - xorg
+    - xmonad
+
+- name: Install ~/.xsession
+  copy: src=xsession dest=/home/{{item}}/.xsession
+  with_items:
+    - stew
+
+- name: Create ~/.xmonad
+  file: path=/home/{{item}}/.xmonad state=directory
+  with_items:
+    - stew
+
+- name: Install ~/.xmonad/xmonad.hs
+  copy: src=xmonad.hs dest=/home/{{item}}/.xmonad/xmonad.hs
+  with_items:
+    - stew
+  notify: restart gdm3

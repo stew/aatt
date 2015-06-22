@@ -1,0 +1,7 @@
+---
+- hosts: xmonad
+  roles:
+    - role: common
+    - role: xmonad
+    - role: emacs
+  
